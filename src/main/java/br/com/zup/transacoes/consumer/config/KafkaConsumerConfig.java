@@ -1,4 +1,5 @@
-package br.com.zup.transacoes.consumer;
+package br.com.zup.transacoes.consumer.config;
+import br.com.zup.transacoes.consumer.responsemessage.TransacaoResponse;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

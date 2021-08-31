@@ -1,4 +1,4 @@
-package br.com.zup.transacoes.consumer;
+package br.com.zup.transacoes.consumer.responsemessage;
 
 import java.time.LocalDateTime;
 
