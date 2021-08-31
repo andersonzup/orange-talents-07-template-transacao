@@ -1,6 +1,6 @@
 package br.com.zup.transacoes.consumer.entity;
 
-import br.com.zup.transacoes.consumer.responsemessage.EstabelecimentoResponse;
+import br.com.zup.transacoes.consumer.responsemessage.EstabelecimentoResponseTopic;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,14 +22,25 @@ public class Estabelecimento {
     public Estabelecimento() {
     }
 
-    public Estabelecimento(EstabelecimentoResponse estabelecimentoResponse) {
-        this.nome = estabelecimentoResponse.getNome();
-        this.cidade = estabelecimentoResponse.getCidade();
-        this.endereco = estabelecimentoResponse.getEndereco();
+    public Estabelecimento(EstabelecimentoResponseTopic estabelecimentoResponseTopic) {
+        this.nome = estabelecimentoResponseTopic.getNome();
+        this.cidade = estabelecimentoResponseTopic.getCidade();
+        this.endereco = estabelecimentoResponseTopic.getEndereco();
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public String getNome() {
+        return nome;
+    }
 
+    public String getCidade() {
+        return cidade;
+    }
 
-
+    public String getEndereco() {
+        return endereco;
+    }
 }

@@ -1,5 +1,5 @@
 package br.com.zup.transacoes.consumer.config;
-import br.com.zup.transacoes.consumer.responsemessage.TransacaoResponse;
+import br.com.zup.transacoes.consumer.responsemessage.TransacaoResponseTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,18 +23,18 @@ public class KafkaConsumerConfig {
     private String groupId;
 
     @Bean
-    public ConsumerFactory<String, TransacaoResponse> TransacaoConsumerFactory() {
+    public ConsumerFactory<String, TransacaoResponseTopic> TransacaoConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(TransacaoResponse.class, false));
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(TransacaoResponseTopic.class, false));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, TransacaoResponse> transacaoKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, TransacaoResponse> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, TransacaoResponseTopic> transacaoKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, TransacaoResponseTopic> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(TransacaoConsumerFactory());
         return factory;
     }

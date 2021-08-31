@@ -1,8 +1,7 @@
 package br.com.zup.transacoes.consumer.entity;
 
-import br.com.zup.transacoes.consumer.responsemessage.CartaoResponse;
-import br.com.zup.transacoes.consumer.responsemessage.EstabelecimentoResponse;
-import br.com.zup.transacoes.consumer.responsemessage.TransacaoResponse;
+
+import br.com.zup.transacoes.consumer.responsemessage.TransacaoResponseTopic;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,37 +16,47 @@ public class Transacao {
     private String idtransacao;
     private double valor;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
     private Estabelecimento estabelecimento;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn
+    @Embedded
     private Cartao cartao;
-
 
     private LocalDateTime efetivadaEm;
 
     public Transacao() {
     }
 
-    public Transacao(TransacaoResponse transacaoResponse) {
-        this.idtransacao = transacaoResponse.getId();
-        this.valor = transacaoResponse.getValor();
-        this.estabelecimento = new Estabelecimento(transacaoResponse.getEstabelecimento());
-        this.cartao = new Cartao(transacaoResponse.getCartao());
-        this.efetivadaEm = transacaoResponse.getEfetivadaEm();
+    public Transacao(TransacaoResponseTopic transacaoResponseTopic) {
+        this.idtransacao = transacaoResponseTopic.getId();
+        this.valor = transacaoResponseTopic.getValor();
+        this.estabelecimento = new Estabelecimento(transacaoResponseTopic.getEstabelecimento());
+        this.cartao = new Cartao(transacaoResponseTopic.getCartao());
+        this.efetivadaEm = transacaoResponseTopic.getEfetivadaEm();
     }
 
-    @Override
-    public String toString() {
-        return "Transacao{" +
-                "id=" + id +
-                ", idtransacao='" + idtransacao + '\'' +
-                ", valor=" + valor +
-                ", estabelecimento=" + estabelecimento +
-                ", cartao=" + cartao +
-                ", efetivadaEm=" + efetivadaEm +
-                '}';
+    public Long getId() {
+        return id;
+    }
+
+    public String getIdtransacao() {
+        return idtransacao;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public Estabelecimento getEstabelecimento() {
+        return estabelecimento;
+    }
+
+    public Cartao getCartao() {
+        return cartao;
+    }
+
+    public LocalDateTime getEfetivadaEm() {
+        return efetivadaEm;
     }
 }

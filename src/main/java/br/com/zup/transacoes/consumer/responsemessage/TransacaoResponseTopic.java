@@ -2,18 +2,18 @@ package br.com.zup.transacoes.consumer.responsemessage;
 
 import java.time.LocalDateTime;
 
-public class TransacaoResponse {
+public class TransacaoResponseTopic {
     private String id;
     private double valor;
-    private EstabelecimentoResponse estabelecimento;
-    private CartaoResponse cartao;
+    private EstabelecimentoResponseTopic estabelecimento;
+    private CartaoResponseTopic cartao;
     private LocalDateTime efetivadaEm;
 
     @Deprecated
-    public TransacaoResponse() {
+    public TransacaoResponseTopic() {
     }
 
-    public TransacaoResponse(String id, double valor, EstabelecimentoResponse estabelecimento, CartaoResponse cartao, LocalDateTime efetivadaEm) {
+    public TransacaoResponseTopic(String id, double valor, EstabelecimentoResponseTopic estabelecimento, CartaoResponseTopic cartao, LocalDateTime efetivadaEm) {
         this.id = id;
         this.valor = valor;
         this.estabelecimento = estabelecimento;
@@ -29,11 +29,11 @@ public class TransacaoResponse {
         return valor;
     }
 
-    public EstabelecimentoResponse getEstabelecimento() {
+    public EstabelecimentoResponseTopic getEstabelecimento() {
         return estabelecimento;
     }
 
-    public CartaoResponse getCartao() {
+    public CartaoResponseTopic getCartao() {
         return cartao;
     }
 

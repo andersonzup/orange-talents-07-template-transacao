@@ -1,19 +1,22 @@
 package br.com.zup.transacoes.consumer.responsemessage;
 
-public class EstabelecimentoResponse {
+import br.com.zup.transacoes.consumer.entity.Estabelecimento;
+
+public class EstabelecimentoResponseTopic {
     private String nome;
     private String cidade;
     private String endereco;
 
     @Deprecated
-    public EstabelecimentoResponse() {
+    public EstabelecimentoResponseTopic() {
     }
 
-    public EstabelecimentoResponse(String nome, String cidade, String endereco) {
+    public EstabelecimentoResponseTopic(String nome, String cidade, String endereco) {
         this.nome = nome;
         this.cidade = cidade;
         this.endereco = endereco;
     }
+
 
 
     public String getNome() {

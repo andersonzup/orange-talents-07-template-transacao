@@ -1,14 +1,14 @@
 package br.com.zup.transacoes.consumer.responsemessage;
 
-public class CartaoResponse {
+public class CartaoResponseTopic {
     private String id;
     private String email;
 
     @Deprecated
-    public CartaoResponse() {
+    public CartaoResponseTopic() {
     }
 
-    public CartaoResponse(String id, String email) {
+    public CartaoResponseTopic(String id, String email) {
         this.id = id;
         this.email = email;
     }

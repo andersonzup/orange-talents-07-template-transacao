@@ -1,29 +1,30 @@
 package br.com.zup.transacoes.consumer.entity;
 
 
-import br.com.zup.transacoes.consumer.responsemessage.CartaoResponse;
+import br.com.zup.transacoes.consumer.responsemessage.CartaoResponseTopic;
 
 import javax.persistence.*;
-import java.util.List;
 
-@Entity
+@Embeddable
 public class Cartao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String idcartao;
 
     private String email;
 
-    @OneToMany
-    private List<Transacao> transacao;
-
     public Cartao() {
     }
 
-    public Cartao(CartaoResponse cartaoResponse) {
-        this.idcartao = cartaoResponse.getId();
-        this.email = cartaoResponse.getEmail();
+    public Cartao(CartaoResponseTopic cartaoResponseTopic) {
+        this.idcartao = cartaoResponseTopic.getId();
+        this.email = cartaoResponseTopic.getEmail();
+    }
+
+    public String getIdcartao() {
+        return idcartao;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
